@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <random>
 
 #include "TestData.h"
 #include "TFContext.h"
@@ -62,9 +63,13 @@ void TestData::init_data(int64_t ** p_dims, int * p_ndims, float ** p_data, int 
 	}
 	(*p_ndata) = total_data_size * sizeof(float);
 
+	static std::default_random_engine e;
+	static std::uniform_real_distribution<> dis(0, 1);
+
 	(*p_data) = (float *) malloc(*p_ndata);
 	for (int i = 0; i < total_data_size; i++) {
-		(*p_data)[i] = 0.8;
+		//(*p_data)[i] = 0.8;
+		(*p_data)[i] = dis(e);
 	}
 }
 
