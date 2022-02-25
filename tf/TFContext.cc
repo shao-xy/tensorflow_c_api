@@ -36,7 +36,7 @@ bool TFContext::load_model(const char* saved_model_dir)
 	return suc;
 }
 
-void TFContext::run_test(int round)
+void TFContext::run_test(int round, bool save, const char * input_file, const char * output_file)
 {
 	// alias
 	using timepoint = std::chrono::time_point<std::chrono::high_resolution_clock>;
@@ -45,6 +45,10 @@ void TFContext::run_test(int round)
 	//list<double> durations;
 	for (int i = 0; i < round; i++) {
 		TestData test_data(this);
+
+		if (save && i == (round - 1)) {
+			test_data.save_inputdata(input_file);
+		}
 
 		timepoint start = now();
 
@@ -64,8 +68,12 @@ void TFContext::run_test(int round)
 			cout << "Run "<< (i+1) << ": " << duration << "ms" << endl;
 			//durations.push_back(duration);
 		} else {
-			cout << "Run "<< (i+1) << ": FAILED." << endl;
+			cout << "Run "<< (i+1) << ": FAILED. (" << TF_Message(status) << ")" << endl;
 			//durations.push_back(-1.0);
+		}
+
+		if (save && i == (round - 1)) {
+			test_data.save_outputdata(output_file);
 		}
 	}
 }

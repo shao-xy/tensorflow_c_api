@@ -5,4 +5,9 @@
 !Makefile
 !*.h
 !*.cc
+!*.cpp
 !*.sh
+
+!data
+data/*
+!data/.gitkeep

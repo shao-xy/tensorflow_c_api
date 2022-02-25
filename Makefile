@@ -1,11 +1,14 @@
-USR_ROOT = /home/guest/sxy/usr
+USR_ROOT = /home/ceph/LSTM/libtensorflow
 CXXFLAGS = -g -O3 -std=gnu++11 -I${USR_ROOT}/include -L${USR_ROOT}/lib -ltensorflow -ltensorflow_framework
 
 .PHONY: all
-all: multi-calc test test_cpu
+all: multi-calc gen_inputdata test test_cpu
 
 multi-calc: multi-calc.cc tf/TFContext.o tf/TestData.o
 	#make -C tf/
+	g++ $^ -o $@ ${CXXFLAGS}
+
+gen_inputdata: gen_inputdata.cc tf/TestData.o
 	g++ $^ -o $@ ${CXXFLAGS}
 
 test: test.cpp

@@ -17,7 +17,7 @@ public:
 	~TFContext();
 
 	bool load_model(const char* saved_model_dir);
-	void run_test(int round);
+	void run_test(int round, bool save = false, const char * input_file = NULL, const char * output_file = NULL);
 
 	friend class TestData;
 };
