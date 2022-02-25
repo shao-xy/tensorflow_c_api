@@ -1,0 +1,8 @@
+*
+
+!tf/
+!.gitignore
+!Makefile
+!*.h
+!*.cc
+!*.sh
