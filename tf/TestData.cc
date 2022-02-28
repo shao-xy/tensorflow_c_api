@@ -189,7 +189,7 @@ bool TestData::save_outputdata(const char * output_file)
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < col; j++) {
 			int pos = i * col + j;
-			fprintf(fout, "%.3f ", output_data[pos]);
+			fprintf(fout, "%.9f ", output_data[pos]);
 		}
 		fprintf(fout, "\n");
 		fflush(fout);

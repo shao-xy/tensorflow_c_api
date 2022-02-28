@@ -1,6 +1,6 @@
 #include "tf/TFContext.h"
 
-#define MODEL_DIR "../web-trace"
+#define MODEL_DIR "../save/web-trace"
 #define ROUND 50
 
 int main(int argc, char * argv[])
